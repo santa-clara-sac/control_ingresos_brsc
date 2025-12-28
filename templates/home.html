@@ -1,0 +1,180 @@
+{% extends "navbar.html" %}
+{% load static %}
+
+{% block title %}Control de Ingresos{% endblock %}
+
+{% block extra_css %}
+<style>
+    :root {
+        --azul-corporativo: #0b3c5d;
+    }
+
+    body {
+        overflow: hidden; /* sin scroll */
+    }
+
+    /* LINKS */
+    .card-link {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    /* CARD BASE */
+    .card-hover {
+        border: none;
+        border-radius: 14px;
+        overflow: hidden;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+        max-width: 220px; /* 🔹 más pequeño para 4 en línea */
+    }
+
+    .card-hover:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 18px rgba(11, 60, 93, 0.25);
+    }
+
+    /* CARD CUADRADA */
+    .card-square {
+        aspect-ratio: 1 / 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* IMAGEN */
+    .image-wrapper {
+        height: 60%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+    }
+
+    .image-wrapper img {
+        max-width: 85%;
+        max-height: 85%;
+        object-fit: contain;
+    }
+
+    /* CUERPO */
+    .card-body {
+        height: 40%;
+        background-color: #f8f9fa;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0.6rem;
+    }
+
+    .card-title {
+        color: var(--azul-corporativo);
+        font-weight: 700;
+        margin-bottom: 0.1rem;
+        font-size: 0.9rem;
+    }
+
+    .card-text {
+        font-size: 0.75rem;
+    }
+
+    /* BOTÓN DRIVE */
+    .btn-drive {
+        background-color: var(--azul-corporativo);
+        color: #fff;
+        border-radius: 20px;
+        padding: 6px 18px;
+        font-size: 0.85rem;
+    }
+
+    .btn-drive:hover {
+        background-color: #092f48;
+        color: #fff;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="container d-flex flex-column justify-content-center align-items-center"
+     style="min-height: calc(100vh - 340px);">
+
+    <!-- TÍTULO -->
+    <h1 class="fw-bold mb-2" style="color: var(--azul-corporativo);">
+        CONTROL DE INGRESOS
+    </h1>
+
+    <!-- BOTÓN DRIVE -->
+    <div class="mb-3">
+        <a href="https://drive.google.com/drive/folders/1WyzQ-2MkTLKkEte7KbgUXPf6KCsMJDj8?usp=drive_link"
+           target="_blank"
+           class="btn btn-drive">
+            Ir al Drive
+        </a>
+    </div>
+
+    <!-- 4 CARDS EN LÍNEA -->
+    <div class="row g-3 justify-content-center w-100">
+
+        <!-- TUPAC -->
+        <div class="col-3 d-flex justify-content-center">
+            <a href="{% url 'tupac_amaru:tupac_amaru' %}" class="card-link">
+                <div class="card card-hover card-square text-center">
+                    <div class="image-wrapper">
+                        <img src="{% static 'images/alquiler2.png' %}" alt="Tupac Amaru">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">TUPAC AMARU</h5>
+                        <p class="card-text text-muted mb-0">(Los Olivos)</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- CANTA -->
+        <div class="col-3 d-flex justify-content-center">
+            <a href="{% url 'canta_callao:canta_callao' %}" class="card-link">
+                <div class="card card-hover card-square text-center">
+                    <div class="image-wrapper">
+                        <img src="{% static 'images/alquiler2.png' %}" alt="Canta Callao">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">CANTA CALLAO</h5>
+                        <p class="card-text text-muted mb-0">(Colegio)</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- CORDOVA -->
+        <div class="col-3 d-flex justify-content-center">
+            <a href="{% url 'cordova:cordova' %}" class="card-link">
+                <div class="card card-hover card-square text-center">
+                    <div class="image-wrapper">
+                        <img src="{% static 'images/alquiler2.png' %}" alt="Cordova">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">CORDOVA</h5>
+                        <p class="card-text text-muted mb-0">(XXXXXXXX)</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- SULLANA -->
+        <div class="col-3 d-flex justify-content-center">
+            <a href="{% url 'sullana:sullana' %}" class="card-link">
+                <div class="card card-hover card-square text-center">
+                    <div class="image-wrapper">
+                        <img src="{% static 'images/alquiler2.png' %}" alt="Sullana">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">SULLANA</h5>
+                        <p class="card-text text-muted mb-0">(XXXXXXXX)</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

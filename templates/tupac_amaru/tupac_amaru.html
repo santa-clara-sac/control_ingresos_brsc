@@ -1,0 +1,311 @@
+{% extends "navbar.html" %}
+{% load static %}
+
+{% block title %}Tupac Amaru{% endblock %}
+
+{% block extra_css %}
+<style>
+    .card-img-top {
+        height: 160px;
+        object-fit: cover;
+    }
+    .img-fit {
+        height: 160px;        /* ajusta según tu diseño */
+        object-fit: contain; /* NO recorta ni deforma */
+        padding: 10px;
+        background-color: #fff;
+    }
+    .list-group-item {
+        transition: background-color 0.2s ease;
+    }
+
+    .list-group-item:hover {
+        background-color: #f8f9fa;
+    }
+
+    .list-group-item a:hover {
+        color: #0d6efd;
+    }
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <!-- Enlace a Google Sheets -->
+    <div class="text-center mb-4">
+        <a href="https://docs.google.com/spreadsheets/d/12SUYHNNvqkv_QKLgdaVisKb8Fp28RHJKG3IRiTGr-JY/edit?gid=2095523872#gid=2095523872"
+           target="_blank"
+           class="fw-semibold text-decoration-none link-primary">
+            Ir a la hoja de cálculo
+        </a>
+    </div>
+
+    <!-- Título -->
+    <h2 class="text-center fw-bold mb-4">COMERCIOS AFILIADOS</h2>
+
+    <!-- Lista -->
+    <ul class="list-group list-group-flush mx-auto text-center shadow-sm rounded"
+        style="max-width: 720px;">
+
+        <li class="list-group-item py-2">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#modalAutopartesDiaz"
+               class="d-block text-decoration-none fw-semibold link-dark">
+                AUTOPARTES DIAZ
+            </a>
+        </li>
+
+        <li class="list-group-item py-2">
+            <a href="{% url 'tupac_amaru:parabrisas_willy_glass' %}"
+               class="d-block text-decoration-none fw-semibold link-dark">
+                PARABRISAS WILLY GLASS
+            </a>
+        </li>
+
+        <li class="list-group-item py-2">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#modalAutopartesChristian"
+               class="d-block text-decoration-none fw-semibold link-dark">
+                AUTOPARTES CHRISTIAN
+            </a>
+        </li>
+
+        <li class="list-group-item py-2">
+            <a href="{% url 'tupac_amaru:autopartes_accesorios_alcantara' %}"
+               class="d-block text-decoration-none fw-semibold link-dark">
+                AUTOPARTES Y ACCESORIOS ALCANTARA
+            </a>
+        </li>
+
+        <li class="list-group-item py-2">
+            <a href="{% url 'tupac_amaru:autopartes_de_multimarcas_daniel_alcantara_monsefu' %}"
+               class="d-block text-decoration-none fw-semibold link-dark">
+                AUTOPARTES DE MULTIMARCAS
+            </a>
+        </li>
+
+        <li class="list-group-item py-2">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#modalDistribuidoraMatizados"
+               class="d-block text-decoration-none fw-semibold link-dark">
+                DISTRIBUIDORA Y MATIZADOS VELSA
+            </a>
+        </li>
+
+        <li class="list-group-item py-2">
+            <a href="{% url 'tupac_amaru:fierro_nancy_marlene' %}"
+               class="d-block text-decoration-none fw-semibold link-dark">
+                FIERROS NANCY
+            </a>
+        </li>
+
+        <li class="list-group-item py-2">
+            <a href="{% url 'tupac_amaru:autopartes_alfredo_peluca' %}"
+               class="d-block text-decoration-none fw-semibold link-dark">
+                AUTOPARTES Y ACCESORIOS ALFREDO (PELUCA)
+            </a>
+        </li>
+
+        <li class="list-group-item py-2">
+            <a href="{% url 'tupac_amaru:chino_juana_iris' %}"
+               class="d-block text-decoration-none fw-semibold link-dark">
+                CHINO
+            </a>
+        </li>
+
+        <li class="list-group-item py-2">
+            <a href="{% url 'tupac_amaru:domingo_saavedra_peluca' %}"
+               class="d-block text-decoration-none fw-semibold link-dark">
+                DOMINGO SAAVEDRA (PELUCA 2)
+            </a>
+        </li>
+
+        <li class="list-group-item py-2">
+            <a href="{% url 'tupac_amaru:compra_y_venta_chatarra_laurie' %}"
+               class="d-block text-decoration-none fw-semibold link-dark">
+                COMPRA Y VENTA DE CHATARRA LAURIE
+            </a>
+        </li>
+
+        <li class="list-group-item py-2">
+            <a href="{% url 'tupac_amaru:arenado_jose_antonio_rodriguez_chafloque' %}"
+               class="d-block text-decoration-none fw-semibold link-dark">
+                ARENADO - JOSE ANTONIO RODRIGUEZ CHAFLOQUE
+            </a>
+        </li>
+
+        <li class="list-group-item py-2">
+            <a href="{% url 'tupac_amaru:arenado_miguel_carpio' %}"
+               class="d-block text-decoration-none fw-semibold link-dark">
+                ARENADO - MIGUEL CARPIO
+            </a>
+        </li>
+
+        <li class="list-group-item py-2">
+            <a href="{% url 'tupac_amaru:pedro_estella' %}"
+               class="d-block text-decoration-none fw-semibold link-dark">
+                ARENADO - PEDRO ESTELLA
+            </a>
+        </li>
+
+        <li class="list-group-item py-2">
+            <a href="{% url 'tupac_amaru:steev_anatoly_maquin_valladares' %}"
+               class="d-block text-decoration-none fw-semibold link-dark">
+                STEEV ANATOLY MAQUIN VALLADARES
+            </a>
+        </li>
+
+    </ul>
+</div>
+
+
+
+
+
+
+<!-- MODAL AUTOPARTES DIAZ -->
+<div class="modal fade" id="modalAutopartesDiaz" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold">Selecciona una opción</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="row g-4">
+
+                    <!-- OPCIÓN 1 -->
+                    <div class="col-md-6">
+                        <a href="{% url 'tupac_amaru:autopartes_diaz_1' %}"
+                           class="text-decoration-none text-dark">
+                            <div class="card h-100 shadow-sm text-center">
+                                <div class="card-body">
+                                    <h5 class="fw-bold">1. AUTOPARTES DIAZ</h5>
+                                    <h6 class="text-secondary">(Unger 4739)</h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- OPCIÓN 1-A -->
+                    <div class="col-md-6">
+                        <a href="{% url 'tupac_amaru:autopartes_diaz_1a' %}"
+                           class="text-decoration-none text-dark">
+                            <div class="card h-100 shadow-sm text-center">
+                                <div class="card-body">
+                                    <h5 class="fw-bold">1-A. AUTOPARTES DIAZ (3er PISO)</h5>
+                                    <h6 class="text-secondary">(Tornos 100)</h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- MODAL AUTOPARTES CHRISTIAN -->
+<div class="modal fade" id="modalAutopartesChristian" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold">Selecciona una opción</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="row g-4">
+
+                    <!-- OPCIÓN 1 -->
+                    <div class="col-md-12">
+                        <a href="{% url 'tupac_amaru:autopartes_christian_local1' %}"
+                           class="text-decoration-none text-dark">
+                            <div class="card h-100 shadow-sm text-center">
+                                <div class="card-body">
+                                    <h5 class="fw-bold">3. AUTOPARTES CHRISTIAN (LOCAL 1)</h5>
+                                    <h6 class="text-secondary">(Unger 4729)</h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- OPCIÓN 1-A -->
+                    <div class="col-md-12">
+                        <a href="{% url 'tupac_amaru:autopartes_christian_local2' %}"
+                           class="text-decoration-none text-dark">
+                            <div class="card h-100 shadow-sm text-center">
+                                <div class="card-body">
+                                    <h5 class="fw-bold">4. AUTOPARTES CHRISTIAN (LOCAL 2)</h5>
+                                    <h6 class="text-secondary">(Unger 4729)</h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- OPCIÓN 1-A -->
+                    <div class="col-md-12">
+                        <a href="{% url 'tupac_amaru:autopartes_christian_local3' %}"
+                           class="text-decoration-none text-dark">
+                            <div class="card h-100 shadow-sm text-center">
+                                <div class="card-body">
+                                    <h5 class="fw-bold">4-A. AUTOPARTES CHRISTIAN (LOCAL 3) 3er PISO</h5>
+                                    <h6 class="text-secondary">(Unger 4729)</h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- MODAL DISTRIBUIDORA Y MATIZADOS VELSA -->
+ <div class="modal fade" id="modalDistribuidoraMatizados" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold">Selecciona una opción</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="row g-4">
+
+                    <div class="col-md-6">
+                        <a href="{% url 'tupac_amaru:distribuidora_matizados_velsa_1' %}"
+                           class="text-decoration-none text-dark">
+                            <div class="card h-100 shadow-sm text-center">
+                                <div class="card-body">
+                                    <h5 class="fw-bold">7. DISTRIBUIDORA Y MATIZADOS VELSA 1</h5>
+                                    <h6 class="text-secondary">(Unger 4721)</h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-6">
+                        <a href="{% url 'tupac_amaru:distribuidora_matizados_velsa_2' %}"
+                           class="text-decoration-none text-dark">
+                            <div class="card h-100 shadow-sm text-center">
+                                <div class="card-body">
+                                    <h5 class="fw-bold">8. DISTRIBUIDORA Y MATIZADOS VELSA 2</h5>
+                                    <h6 class="text-secondary">(Unger 4721)</h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}{% endblock %}

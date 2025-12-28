@@ -1,0 +1,322 @@
+{% extends "../navbar.html" %}
+
+{% block title %}DISTRIBUIDORA Y MATIZADOS VELSA 2{% endblock %}
+
+{% block extra_css %}
+<script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
+<style>
+    body {
+        overflow: hidden;
+    }
+
+    .table-container {
+        max-height: 68vh;
+        overflow-y: auto;
+    }
+
+    thead th {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        background-color: #212529;
+        color: #fff;
+    }
+
+    .table-bordered-gray th,
+    .table-bordered-gray td {
+        border: 1px solid #000;
+        white-space: nowrap;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="position-relative mb-1 text-center">
+    <h2 class="mb-0">8. DISTRIBUIDORA Y MATIZADOS VELSA 2</h2>
+
+    <div class="position-absolute top-50 end-0 translate-middle-y d-flex gap-2">
+        <a href="{{ pdf_contrato|default:'' }}"
+            id="btnContrato"
+            class="btn btn-sm"
+            target="_blank"
+            style="background-color: rgb(3, 0, 76); color: #fff;">
+                <i class="bi bi-file-earmark-text"></i> PDF Contrato
+        </a>
+        <a href="https://docs.google.com/spreadsheets/d/12SUYHNNvqkv_QKLgdaVisKb8Fp28RHJKG3IRiTGr-JY/edit?usp=sharing" class="btn btn-success btn-sm" style="background-color: #197e00; color: #fff;" target="_blank">
+            <i class="bi bi-google"></i> Google Sheet
+        </a>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center mb-4">
+    <div class="border rounded p-3 w-75" style="background-color: #ebf4ff;">
+        <div class="row text-center">
+
+            <!-- INICIO -->
+            <div class="col-md-4 mb-3">
+                <div class="fw-bold">INICIO DEL CONTRATO</div>
+                <div>{{ inicio_contrato }}</div>
+            </div>
+
+            <!-- FIN -->
+            <div class="col-md-4 mb-3">
+                <div class="fw-bold">FIN DEL CONTRATO</div>
+                <div>{{ fin_contrato }}</div>
+            </div>
+
+            <!-- RENTA -->
+            <div class="col-md-4 mb-3">
+                <div class="fw-bold">RENTA MENSUAL</div>
+                <div>S/ {{ renta_mensual }}</div>
+            </div>
+
+            <!-- INQUILINO -->
+            <div class="col-md-4">
+                <div class="fw-bold">INQUILINO</div>
+                <div>{{ inquilino }}</div>
+            </div>
+
+            <!-- DIRECCIÓN -->
+            <div class="col-md-4">
+                <div class="fw-bold">DIRECCIÓN</div>
+                <div>{{ direccion }}</div>
+            </div>
+
+            <!-- DEUDA -->
+            <div class="col-md-4">
+                <div class="fw-bold" style="color: rgb(154, 0, 0);">DEUDA ACTUAL</div>
+                <div style="color: rgb(154, 0, 0);">S/ {{ deuda_actual }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form method="GET" class="row g-3 mb-3 align-items-end">
+
+    <div class="col-md-2">
+        <label class="form-label">Desde:</label>
+        <input type="date"
+               name="fecha_inicio"
+               class="form-control"
+               value="{{ request.GET.fecha_inicio }}">
+    </div>
+
+    <div class="col-md-2">
+        <label class="form-label">Hasta:</label>
+        <input type="date"
+               name="fecha_fin"
+               class="form-control"
+               value="{{ request.GET.fecha_fin }}">
+    </div>
+
+    <div class="col-md-2">
+        <button class="btn w-100" style="background-color: #B8D3F5;">
+            Filtrar
+        </button>
+    </div>
+
+    <div class="col-md-2">
+        <button type="button"
+                id="btnOrdenarFecha"
+                class="btn w-100"
+                style="background-color: #F5E6B8;"
+                onclick="ordenarPorFecha()">
+            Ordenar ↑
+        </button>
+    </div>
+
+    <div class="col-md-2">
+        <button type="button"
+                class="btn w-100"
+                style="background-color: #C7C7C7;"
+                onclick="limpiarFiltros()">
+            Limpiar
+        </button>
+    </div>
+
+    <div class="col-md-2">
+        <button type="button"
+                class="btn w-100"
+                style="background-color: #B8F5D7;"
+                onclick="exportarExcel()">
+            Descargar Excel
+        </button>
+    </div>
+
+</form>
+
+
+{% if rows %}
+<div class="table-container">
+    <table class="table table-hover table-bordered-gray" style="border-bottom: 1px solid #000;">
+        <thead class="table-dark">
+            <tr>
+                {% for h in headers %}
+                <th>{{ h }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+            <tr>
+                {% for col in row %}
+                    {% if forloop.counter0 == 1 and "RENTA" in col %}
+                        <td><strong>{{ col }}</strong></td>
+                    {% else %}
+                        <td>{{ col }}</td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="alert alert-warning text-center">
+    No hay datos disponibles
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  let ordenAscendente = false; // ya viene ascendente desde el backend
+
+function ordenarPorFecha() {
+    const table = document.querySelector(".table-container table");
+    const tbody = table.querySelector("tbody");
+    const filas = Array.from(tbody.querySelectorAll("tr"));
+
+    filas.sort((a, b) => {
+        const fechaA = convertirFecha(a.cells[0].innerText);
+        const fechaB = convertirFecha(b.cells[0].innerText);
+
+        // Primer click: DESC (más reciente arriba)
+        return ordenAscendente
+            ? fechaA - fechaB
+            : fechaB - fechaA;
+    });
+
+    // Reinsertar filas ordenadas
+    filas.forEach(fila => tbody.appendChild(fila));
+
+    // Alternar estado
+    ordenAscendente = !ordenAscendente;
+
+    // Cambiar texto del botón según PRÓXIMO orden
+    document.getElementById("btnOrdenarFecha").innerText =
+        ordenAscendente ? "Ordenar ↑ (Antiguo)" : "Ordenar ↓ (Reciente)";
+}
+
+function convertirFecha(fechaStr) {
+    // Formato esperado: DD/MM/YYYY
+    const partes = fechaStr.split("/");
+    return new Date(partes[2], partes[1] - 1, partes[0]);
+}
+
+function normalizarTabla() {
+    const tds = document.querySelectorAll("table td");
+
+    tds.forEach(td => {
+        if (td.innerText.trim() === "") {
+            td.innerHTML = "&nbsp;"; // fuerza existencia real
+        }
+    });
+}
+
+/* 🔹 EXPORTAR EXCEL CON BORDES + ALINEACIÓN */
+function exportarExcel() {
+    normalizarTabla();
+    const tabla = document.querySelector("table");
+    if (!tabla) return alert("No hay datos");
+
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.table_to_sheet(tabla);
+
+    let rango = XLSX.utils.decode_range(ws["!ref"]);
+
+    const borderStyle = {
+        top:    { style: "thin" },
+        bottom: { style: "thin" },
+        left:   { style: "thin" },
+        right:  { style: "thin" }
+    };
+
+    // 2️⃣ Aplicar estilos a TODO el rango
+    for (let R = rango.s.r; R <= rango.e.r; ++R) {
+        for (let C = rango.s.c; C <= rango.e.c; ++C) {
+
+            const ref = XLSX.utils.encode_cell({ r: R, c: C });
+
+            if (!ws[ref]) {
+                ws[ref] = { t: "s", v: "" };
+            }
+
+            // Encabezado
+            if (R === 0) {
+                ws[ref].s = {
+                    font: { bold: true },
+                    alignment: { horizontal: "center", vertical: "center" },
+                    border: borderStyle
+                };
+            } 
+            // Columna FECHA (A)
+            else if (C === 0) {
+                ws[ref].s = {
+                    alignment: { horizontal: "left" },
+                    border: borderStyle
+                };
+            } 
+            // Resto de celdas
+            else {
+                ws[ref].s = {
+                    border: borderStyle
+                };
+            }
+        }
+    }
+
+    // 3️⃣ Auto-ajustar ancho de columnas
+    ws["!cols"] = Array.from(
+        { length: rango.e.c - rango.s.c + 1 },
+        (_, C) => {
+            let max = 10;
+            for (let R = rango.s.r; R <= rango.e.r; ++R) {
+                const cell = ws[XLSX.utils.encode_cell({ r: R, c: C })];
+                if (cell && cell.v) {
+                    max = Math.max(max, cell.v.toString().length + 2);
+                }
+            }
+            return { wch: max };
+        }
+    );
+
+    XLSX.utils.book_append_sheet(wb, ws, "Reporte");
+
+    const fecha = new Date().toISOString().slice(0, 10);
+    XLSX.writeFile(wb, `distribuidora_matizados_velsa_2_${fecha}.xlsx`);
+}
+
+function limpiarFiltros() {
+    window.location.href = window.location.pathname;
+}
+
+document.getElementById('btnContrato').addEventListener('click', function (e) {
+    const url = "{{ pdf_contrato|default:'' }}";
+
+    if (!url) {
+        e.preventDefault();
+        Swal.fire({
+            icon: 'warning',
+            title: 'Contrato no disponible',
+            text: 'No hay un contrato asociado a este comercio.',
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#9a0000'
+        });
+    }
+});
+
+</script>
+{% endblock %}

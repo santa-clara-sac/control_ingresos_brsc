@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Sistema{% endblock %}</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Icons (opcional) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    {% block extra_css %}{% endblock %}
+
+    <style>
+        /* ===== NAVBAR ===== */
+        .navbar-custom {
+            background-color: #1F4A78;
+        }
+
+        .navbar-custom .nav-link,
+        .navbar-custom .navbar-brand {
+            color: #fff !important;
+            font-weight: 500;
+        }
+
+        .navbar-custom .nav-link:hover {
+            text-decoration: underline;
+        }
+
+        .logo-text {
+            font-size: 0.9rem;
+            line-height: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar navbar-expand-lg navbar-custom px-4">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="{% url 'home' %}">
+        <img src="{% static 'images/logo.png' %}"
+            alt="Santa Clara"
+            height="40"
+            class="d-inline-block align-text-top">
+
+        <div class="logo-text">
+            <strong>SANTA CLARA</strong><br>
+            <small>BIENES RAÍCES</small>
+        </div>
+    </a>
+
+
+    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav gap-3">
+            <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'tupac_amaru:tupac_amaru' %}">Tupac Amaru</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'canta_callao:canta_callao' %}">Canta Callao</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'cordova:cordova' %}">Cordova</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'sullana:sullana' %}">Sullana</a></li>
+        </ul>
+    </div>
+
+    <!-- Logo derecho -->
+    <div class="d-none d-lg-block">
+        <i class="bi bi-patch-check-fill text-white fs-4"></i>
+    </div>
+</nav>
+
+<!-- ===== CONTENIDO ===== -->
+<main class="container-fluid py-4">
+    {% block content %}{% endblock %}
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+{% block extra_js %}{% endblock %}
+
+</body>
+</html>
