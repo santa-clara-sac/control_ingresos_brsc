@@ -55,6 +55,7 @@ def copiar_formula_saldo(service, spreadsheet_id, hoja, fila_origen, fila_destin
         body={"requests": requests}
     ).execute()
 
+
 def obtener_ultima_fila(service, spreadsheet_id, hoja):
     result = service.spreadsheets().values().get(
         spreadsheetId=spreadsheet_id,
@@ -62,8 +63,6 @@ def obtener_ultima_fila(service, spreadsheet_id, hoja):
     ).execute()
 
     return len(result.get("values", []))
-
-
 
 
 def formulario_ingreso(request):
@@ -150,6 +149,7 @@ def autopartes_diaz_1(request):
     pdf_contrato = info_row[1] if len(info_row) > 1 else ""
     inicio_contrato = info_row[2] if len(info_row) > 2 else ""
     fin_contrato = info_row[3] if len(info_row) > 3 else "" 
+    area = info_row[4] if len(info_row) > 4 else "" 
     renta_mensual = info_row[5] if len(info_row) > 5 else "" 
     inquilino = info_row[8] if len(info_row) > 8 else ""   # Columna I
     direccion = info_row[10] if len(info_row) > 10 else "" # Columna K
@@ -215,6 +215,7 @@ def autopartes_diaz_1(request):
         "rows": rows_filtradas,
         "fecha_inicio": fecha_inicio,
         "fecha_fin": fecha_fin,
+        "area": area,
         "inquilino": inquilino,
         "direccion": direccion,
         "inicio_contrato": inicio_contrato,
@@ -242,6 +243,7 @@ def autopartes_diaz_1a(request):
     pdf_contrato = info_row[1] if len(info_row) > 1 else ""
     inicio_contrato = info_row[2] if len(info_row) > 2 else ""
     fin_contrato = info_row[3] if len(info_row) > 3 else "" 
+    area = info_row[4] if len(info_row) > 4 else "" 
     renta_mensual = info_row[5] if len(info_row) > 5 else "" 
     inquilino = info_row[8] if len(info_row) > 8 else ""   # Columna I
     direccion = info_row[10] if len(info_row) > 10 else "" # Columna K
@@ -307,6 +309,7 @@ def autopartes_diaz_1a(request):
         "rows": rows_filtradas,
         "fecha_inicio": fecha_inicio,
         "fecha_fin": fecha_fin,
+        "area": area,
         "inquilino": inquilino,
         "direccion": direccion,
         "inicio_contrato": inicio_contrato,
@@ -334,6 +337,7 @@ def parabrisas_willy_glass(request):
     pdf_contrato = info_row[1] if len(info_row) > 1 else ""
     inicio_contrato = info_row[2] if len(info_row) > 2 else ""
     fin_contrato = info_row[3] if len(info_row) > 3 else "" 
+    area = info_row[4] if len(info_row) > 4 else "" 
     renta_mensual = info_row[5] if len(info_row) > 5 else "" 
     inquilino = info_row[8] if len(info_row) > 8 else ""   # Columna I
     direccion = info_row[10] if len(info_row) > 10 else "" # Columna K
@@ -398,6 +402,7 @@ def parabrisas_willy_glass(request):
         "rows": rows_filtradas,
         "fecha_inicio": fecha_inicio,
         "fecha_fin": fecha_fin,
+        "area": area,
         "inquilino": inquilino,
         "direccion": direccion,
         "inicio_contrato": inicio_contrato,
@@ -425,7 +430,8 @@ def autopartes_christian_local1(request):
 
     pdf_contrato = info_row[1] if len(info_row) > 1 else ""
     inicio_contrato = info_row[2] if len(info_row) > 2 else ""
-    fin_contrato = info_row[3] if len(info_row) > 3 else "" 
+    fin_contrato = info_row[3] if len(info_row) > 3 else ""
+    area = info_row[4] if len(info_row) > 4 else "" 
     renta_mensual = info_row[5] if len(info_row) > 5 else "" 
     inquilino = info_row[8] if len(info_row) > 8 else ""   # Columna I
     direccion = info_row[10] if len(info_row) > 10 else "" # Columna K
@@ -490,6 +496,7 @@ def autopartes_christian_local1(request):
         "rows": rows_filtradas,
         "fecha_inicio": fecha_inicio,
         "fecha_fin": fecha_fin,
+        "area": area,
         "inquilino": inquilino,
         "direccion": direccion,
         "inicio_contrato": inicio_contrato,
@@ -517,6 +524,7 @@ def autopartes_christian_local2(request):
     pdf_contrato = info_row[1] if len(info_row) > 1 else ""
     inicio_contrato = info_row[2] if len(info_row) > 2 else ""
     fin_contrato = info_row[3] if len(info_row) > 3 else "" 
+    area = info_row[4] if len(info_row) > 4 else "" 
     renta_mensual = info_row[5] if len(info_row) > 5 else "" 
     inquilino = info_row[8] if len(info_row) > 8 else ""   # Columna I
     direccion = info_row[10] if len(info_row) > 10 else "" # Columna K
@@ -581,6 +589,7 @@ def autopartes_christian_local2(request):
         "rows": rows_filtradas,
         "fecha_inicio": fecha_inicio,
         "fecha_fin": fecha_fin,
+        "area": area,
         "inquilino": inquilino,
         "direccion": direccion,
         "inicio_contrato": inicio_contrato,
@@ -608,6 +617,7 @@ def autopartes_christian_local3(request):
     pdf_contrato = info_row[1] if len(info_row) > 1 else ""
     inicio_contrato = info_row[2] if len(info_row) > 2 else ""
     fin_contrato = info_row[3] if len(info_row) > 3 else "" 
+    area = info_row[4] if len(info_row) > 4 else "" 
     renta_mensual = info_row[5] if len(info_row) > 5 else "" 
     inquilino = info_row[8] if len(info_row) > 8 else ""   # Columna I
     direccion = info_row[10] if len(info_row) > 10 else "" # Columna K
@@ -672,6 +682,7 @@ def autopartes_christian_local3(request):
         "rows": rows_filtradas,
         "fecha_inicio": fecha_inicio,
         "fecha_fin": fecha_fin,
+        "area": area,
         "inquilino": inquilino,
         "direccion": direccion,
         "inicio_contrato": inicio_contrato,
@@ -699,6 +710,7 @@ def autopartes_accesorios_alcantara(request):
     pdf_contrato = info_row[1] if len(info_row) > 1 else ""
     inicio_contrato = info_row[2] if len(info_row) > 2 else ""
     fin_contrato = info_row[3] if len(info_row) > 3 else "" 
+    area = info_row[4] if len(info_row) > 4 else "" 
     renta_mensual = info_row[5] if len(info_row) > 5 else "" 
     inquilino = info_row[8] if len(info_row) > 8 else ""   # Columna I
     direccion = info_row[10] if len(info_row) > 10 else "" # Columna K
@@ -763,6 +775,7 @@ def autopartes_accesorios_alcantara(request):
         "rows": rows_filtradas,
         "fecha_inicio": fecha_inicio,
         "fecha_fin": fecha_fin,
+        "area": area,
         "inquilino": inquilino,
         "direccion": direccion,
         "inicio_contrato": inicio_contrato,
@@ -790,6 +803,7 @@ def autopartes_de_multimarcas_daniel_alcantara_monsefu(request):
     pdf_contrato = info_row[1] if len(info_row) > 1 else ""
     inicio_contrato = info_row[2] if len(info_row) > 2 else ""
     fin_contrato = info_row[3] if len(info_row) > 3 else "" 
+    area = info_row[4] if len(info_row) > 4 else "" 
     renta_mensual = info_row[5] if len(info_row) > 5 else "" 
     inquilino = info_row[8] if len(info_row) > 8 else ""   # Columna I
     direccion = info_row[10] if len(info_row) > 10 else "" # Columna K
@@ -854,6 +868,7 @@ def autopartes_de_multimarcas_daniel_alcantara_monsefu(request):
         "rows": rows_filtradas,
         "fecha_inicio": fecha_inicio,
         "fecha_fin": fecha_fin,
+        "area": area,
         "inquilino": inquilino,
         "direccion": direccion,
         "inicio_contrato": inicio_contrato,
@@ -881,6 +896,7 @@ def distribuidora_matizados_velsa_1(request):
     pdf_contrato = info_row[1] if len(info_row) > 1 else ""
     inicio_contrato = info_row[2] if len(info_row) > 2 else ""
     fin_contrato = info_row[3] if len(info_row) > 3 else "" 
+    area = info_row[4] if len(info_row) > 4 else "" 
     renta_mensual = info_row[5] if len(info_row) > 5 else "" 
     inquilino = info_row[8] if len(info_row) > 8 else ""   # Columna I
     direccion = info_row[10] if len(info_row) > 10 else "" # Columna K
@@ -945,6 +961,7 @@ def distribuidora_matizados_velsa_1(request):
         "rows": rows_filtradas,
         "fecha_inicio": fecha_inicio,
         "fecha_fin": fecha_fin,
+        "area": area,
         "inquilino": inquilino,
         "direccion": direccion,
         "inicio_contrato": inicio_contrato,
@@ -972,6 +989,7 @@ def distribuidora_matizados_velsa_2(request):
     pdf_contrato = info_row[1] if len(info_row) > 1 else ""
     inicio_contrato = info_row[2] if len(info_row) > 2 else ""
     fin_contrato = info_row[3] if len(info_row) > 3 else "" 
+    area = info_row[4] if len(info_row) > 4 else "" 
     renta_mensual = info_row[5] if len(info_row) > 5 else "" 
     inquilino = info_row[8] if len(info_row) > 8 else ""   # Columna I
     direccion = info_row[10] if len(info_row) > 10 else "" # Columna K
@@ -1036,6 +1054,7 @@ def distribuidora_matizados_velsa_2(request):
         "rows": rows_filtradas,
         "fecha_inicio": fecha_inicio,
         "fecha_fin": fecha_fin,
+        "area": area,
         "inquilino": inquilino,
         "direccion": direccion,
         "inicio_contrato": inicio_contrato,
@@ -1063,6 +1082,7 @@ def fierro_nancy_marlene(request):
     pdf_contrato = info_row[1] if len(info_row) > 1 else ""
     inicio_contrato = info_row[2] if len(info_row) > 2 else ""
     fin_contrato = info_row[3] if len(info_row) > 3 else "" 
+    area = info_row[4] if len(info_row) > 4 else "" 
     renta_mensual = info_row[5] if len(info_row) > 5 else "" 
     inquilino = info_row[8] if len(info_row) > 8 else ""   # Columna I
     direccion = info_row[10] if len(info_row) > 10 else "" # Columna K
@@ -1127,6 +1147,7 @@ def fierro_nancy_marlene(request):
         "rows": rows_filtradas,
         "fecha_inicio": fecha_inicio,
         "fecha_fin": fecha_fin,
+        "area": area,
         "inquilino": inquilino,
         "direccion": direccion,
         "inicio_contrato": inicio_contrato,
@@ -1154,6 +1175,7 @@ def autopartes_alfredo_peluca(request):
     pdf_contrato = info_row[1] if len(info_row) > 1 else ""
     inicio_contrato = info_row[2] if len(info_row) > 2 else ""
     fin_contrato = info_row[3] if len(info_row) > 3 else "" 
+    area = info_row[4] if len(info_row) > 4 else "" 
     renta_mensual = info_row[5] if len(info_row) > 5 else "" 
     inquilino = info_row[8] if len(info_row) > 8 else ""   # Columna I
     direccion = info_row[10] if len(info_row) > 10 else "" # Columna K
@@ -1218,6 +1240,7 @@ def autopartes_alfredo_peluca(request):
         "rows": rows_filtradas,
         "fecha_inicio": fecha_inicio,
         "fecha_fin": fecha_fin,
+        "area": area,
         "inquilino": inquilino,
         "direccion": direccion,
         "inicio_contrato": inicio_contrato,
@@ -1245,6 +1268,7 @@ def chino_juana_iris(request):
     pdf_contrato = info_row[1] if len(info_row) > 1 else ""
     inicio_contrato = info_row[2] if len(info_row) > 2 else ""
     fin_contrato = info_row[3] if len(info_row) > 3 else "" 
+    area = info_row[4] if len(info_row) > 4 else "" 
     renta_mensual = info_row[5] if len(info_row) > 5 else "" 
     inquilino = info_row[8] if len(info_row) > 8 else ""   # Columna I
     direccion = info_row[10] if len(info_row) > 10 else "" # Columna K
@@ -1309,6 +1333,7 @@ def chino_juana_iris(request):
         "rows": rows_filtradas,
         "fecha_inicio": fecha_inicio,
         "fecha_fin": fecha_fin,
+        "area": area,
         "inquilino": inquilino,
         "direccion": direccion,
         "inicio_contrato": inicio_contrato,
@@ -1336,6 +1361,7 @@ def domingo_saavedra_peluca(request):
     pdf_contrato = info_row[1] if len(info_row) > 1 else ""
     inicio_contrato = info_row[2] if len(info_row) > 2 else ""
     fin_contrato = info_row[3] if len(info_row) > 3 else "" 
+    area = info_row[4] if len(info_row) > 4 else "" 
     renta_mensual = info_row[5] if len(info_row) > 5 else "" 
     inquilino = info_row[8] if len(info_row) > 8 else ""   # Columna I
     direccion = info_row[10] if len(info_row) > 10 else "" # Columna K
@@ -1400,6 +1426,7 @@ def domingo_saavedra_peluca(request):
         "rows": rows_filtradas,
         "fecha_inicio": fecha_inicio,
         "fecha_fin": fecha_fin,
+        "area": area,
         "inquilino": inquilino,
         "direccion": direccion,
         "inicio_contrato": inicio_contrato,
@@ -1427,6 +1454,7 @@ def compra_y_venta_chatarra_laurie(request):
     pdf_contrato = info_row[1] if len(info_row) > 1 else ""
     inicio_contrato = info_row[2] if len(info_row) > 2 else ""
     fin_contrato = info_row[3] if len(info_row) > 3 else "" 
+    area = info_row[4] if len(info_row) > 4 else "" 
     renta_mensual = info_row[5] if len(info_row) > 5 else "" 
     inquilino = info_row[8] if len(info_row) > 8 else ""   # Columna I
     direccion = info_row[10] if len(info_row) > 10 else "" # Columna K
@@ -1491,6 +1519,7 @@ def compra_y_venta_chatarra_laurie(request):
         "rows": rows_filtradas,
         "fecha_inicio": fecha_inicio,
         "fecha_fin": fecha_fin,
+        "area": area,
         "inquilino": inquilino,
         "direccion": direccion,
         "inicio_contrato": inicio_contrato,
@@ -1518,6 +1547,7 @@ def arenado_jose_antonio_rodriguez_chafloque(request):
     pdf_contrato = info_row[1] if len(info_row) > 1 else ""
     inicio_contrato = info_row[2] if len(info_row) > 2 else ""
     fin_contrato = info_row[3] if len(info_row) > 3 else "" 
+    area = info_row[4] if len(info_row) > 4 else "" 
     renta_mensual = info_row[5] if len(info_row) > 5 else "" 
     inquilino = info_row[8] if len(info_row) > 8 else ""   # Columna I
     direccion = info_row[10] if len(info_row) > 10 else "" # Columna K
@@ -1582,6 +1612,7 @@ def arenado_jose_antonio_rodriguez_chafloque(request):
         "rows": rows_filtradas,
         "fecha_inicio": fecha_inicio,
         "fecha_fin": fecha_fin,
+        "area": area,
         "inquilino": inquilino,
         "direccion": direccion,
         "inicio_contrato": inicio_contrato,
@@ -1609,6 +1640,7 @@ def arenado_miguel_carpio(request):
     pdf_contrato = info_row[1] if len(info_row) > 1 else ""
     inicio_contrato = info_row[2] if len(info_row) > 2 else ""
     fin_contrato = info_row[3] if len(info_row) > 3 else "" 
+    area = info_row[4] if len(info_row) > 4 else "" 
     renta_mensual = info_row[5] if len(info_row) > 5 else "" 
     inquilino = info_row[8] if len(info_row) > 8 else ""   # Columna I
     direccion = info_row[10] if len(info_row) > 10 else "" # Columna K
@@ -1673,6 +1705,7 @@ def arenado_miguel_carpio(request):
         "rows": rows_filtradas,
         "fecha_inicio": fecha_inicio,
         "fecha_fin": fecha_fin,
+        "area": area,
         "inquilino": inquilino,
         "direccion": direccion,
         "inicio_contrato": inicio_contrato,
@@ -1700,6 +1733,7 @@ def pedro_estella(request):
     pdf_contrato = info_row[1] if len(info_row) > 1 else ""
     inicio_contrato = info_row[2] if len(info_row) > 2 else ""
     fin_contrato = info_row[3] if len(info_row) > 3 else "" 
+    area = info_row[4] if len(info_row) > 4 else "" 
     renta_mensual = info_row[5] if len(info_row) > 5 else "" 
     inquilino = info_row[8] if len(info_row) > 8 else ""   # Columna I
     direccion = info_row[10] if len(info_row) > 10 else "" # Columna K
@@ -1764,6 +1798,7 @@ def pedro_estella(request):
         "rows": rows_filtradas,
         "fecha_inicio": fecha_inicio,
         "fecha_fin": fecha_fin,
+        "area": area,
         "inquilino": inquilino,
         "direccion": direccion,
         "inicio_contrato": inicio_contrato,
@@ -1791,6 +1826,7 @@ def steev_anatoly_maquin_valladares(request):
     pdf_contrato = info_row[1] if len(info_row) > 1 else ""
     inicio_contrato = info_row[2] if len(info_row) > 2 else ""
     fin_contrato = info_row[3] if len(info_row) > 3 else "" 
+    area = info_row[4] if len(info_row) > 4 else "" 
     renta_mensual = info_row[5] if len(info_row) > 5 else "" 
     inquilino = info_row[8] if len(info_row) > 8 else ""   # Columna I
     direccion = info_row[10] if len(info_row) > 10 else "" # Columna K
@@ -1855,6 +1891,7 @@ def steev_anatoly_maquin_valladares(request):
         "rows": rows_filtradas,
         "fecha_inicio": fecha_inicio,
         "fecha_fin": fecha_fin,
+        "area": area,
         "inquilino": inquilino,
         "direccion": direccion,
         "inicio_contrato": inicio_contrato,

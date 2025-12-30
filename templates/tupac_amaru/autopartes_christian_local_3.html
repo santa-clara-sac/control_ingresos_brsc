@@ -51,44 +51,51 @@
 
 <div class="d-flex justify-content-center mb-4">
     <div class="border rounded p-3 w-75" style="background-color: #ebf4ff;">
-        <div class="row text-center">
 
-            <!-- INICIO -->
-            <div class="col-md-4 mb-3">
+        <!-- FILA 1 -->
+        <div class="row text-center mb-3">
+            <div class="col-md-4">
                 <div class="fw-bold">INICIO DEL CONTRATO</div>
                 <div>{{ inicio_contrato }}</div>
             </div>
 
-            <!-- FIN -->
-            <div class="col-md-4 mb-3">
+            <div class="col-md-4">
                 <div class="fw-bold">FIN DEL CONTRATO</div>
                 <div>{{ fin_contrato }}</div>
             </div>
 
-            <!-- RENTA -->
-            <div class="col-md-4 mb-3">
+            <div class="col-md-4">
                 <div class="fw-bold">RENTA MENSUAL</div>
-                <div>S/ {{ renta_mensual }}</div>
+                <div>{{ renta_mensual }}</div>
             </div>
+        </div>
 
-            <!-- INQUILINO -->
+        <!-- FILA 2 -->
+        <div class="row text-center mb-3">
             <div class="col-md-4">
                 <div class="fw-bold">INQUILINO</div>
                 <div>{{ inquilino }}</div>
             </div>
 
-            <!-- DIRECCIÓN -->
             <div class="col-md-4">
-                <div class="fw-bold">DIRECCIÓN</div>
-                <div>{{ direccion }}</div>
+                <div class="fw-bold">ÁREA APROXIMADA</div>
+                <div>{{ area }} m2</div>
             </div>
 
-            <!-- DEUDA -->
             <div class="col-md-4">
                 <div class="fw-bold" style="color: rgb(154, 0, 0);">DEUDA ACTUAL</div>
                 <div style="color: rgb(154, 0, 0);">S/ {{ deuda_actual }}</div>
             </div>
         </div>
+
+        <!-- FILA 3 (DIRECCIÓN - ANCHO COMPLETO) -->
+        <div class="row text-center">
+            <div class="col-12">
+                <div class="fw-bold">DIRECCIÓN</div>
+                <div>{{ direccion }}</div>
+            </div>
+        </div>
+
     </div>
 </div>
 
